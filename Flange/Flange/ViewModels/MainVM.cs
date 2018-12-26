@@ -18,6 +18,20 @@ namespace Flange.ViewModels
         }
 
         /// <summary>
+        /// Конструктор.
+        /// </summary>
+        /// <param name="flangeParametersVM">Вью-модель для параметров фланца.</param>
+        public MainVM(FlangeParametersVM flangeParametersVM) : this()
+        {
+            FlangeParametersVM = flangeParametersVM;
+        }
+
+        /// <summary>
+        /// Вью-модель для параметров фланца.
+        /// </summary>
+        public FlangeParametersVM FlangeParametersVM { get; }
+
+        /// <summary>
         /// Команда запуска КОМПАС-3D.
         /// </summary>
         public StartKompasCommand StartKompasCommand { get; }

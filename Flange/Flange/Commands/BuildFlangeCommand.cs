@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Flange.Commands.BaseCommands;
+using Flange.Model.Flange;
 using Flange.ViewModels;
 
 namespace Flange.Commands
@@ -7,7 +9,7 @@ namespace Flange.Commands
     /// <summary>
     /// Команда построения фланца.
     /// </summary>
-    public class BuildFlangeCommand : CommandBaseWithTypedParameter<FlangeParametersVM>
+    public class BuildFlangeCommand : CommandBaseWithTypedParameter<FlangeParameters>
     {
         /// <summary>
         /// Конструктор.
@@ -19,18 +21,18 @@ namespace Flange.Commands
         /// <summary>
         /// Проверяет возможность выполнения команды.
         /// </summary>
-        /// <param name="flangeParametersVM">Вью-модеь параметров фланца.</param>
+        /// <param name="flangeParameters">Параметры фланца.</param>
         /// <returns>Указывает на возможность выполнения команды.</returns>
-        protected override bool CanExecute(FlangeParametersVM flangeParametersVM)
+        protected override bool CanExecute(FlangeParameters flangeParameters)
         {
-            return !flangeParametersVM.HasErrors;
+            return !flangeParameters.Errors.Any() && !flangeParameters.Parameters.Any(p => p.Errors.Any());
         }
 
         /// <summary>
         /// Выполняет команду.
         /// </summary>
-        /// <param name="flangeParametersVM">Вью-модеь параметров фланца.</param>
-        protected override void Execute(FlangeParametersVM flangeParametersVM)
+        /// <param name="flangeParameters">Параметры фланца.</param>
+        protected override void Execute(FlangeParameters flangeParameters)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using Flange.Model.Validators;
 
 namespace Flange.Model.Flange
@@ -43,5 +45,12 @@ namespace Flange.Model.Flange
         /// Список ошибок.
         /// </summary>
         public List<string> Errors => _validator.Validate(Parameters).ToList();
+
+        /// <summary>
+        /// Индексатор для получения значения свойств.
+        /// </summary>
+        /// <param name="parameterName">Название параметра.</param>
+        public double this[string parameterName] => Parameters.FirstOrDefault(p => p.Name == parameterName)?.Value ??
+                                                    throw new ArgumentException($"Параметр {parameterName} не найден.");
     }
 }

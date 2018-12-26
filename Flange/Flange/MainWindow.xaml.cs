@@ -16,7 +16,7 @@ namespace Flange
         /// </summary>
         public MainWindow()
         {
-            DataContext = new FlangeParametersVM(new FlangeParameters(new FlangeParametersValidator()));
+            DataContext = new MainVM(new FlangeParametersVM(new FlangeParameters(new FlangeParametersValidator())));
             InitializeComponent();
         }
     }

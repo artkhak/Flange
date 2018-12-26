@@ -42,13 +42,13 @@ namespace Flange.Model.Flange
         /// Диаметр подъема.
         /// </summary>
         public static readonly List<IValidator<double>> LiftDiameter = new List<IValidator<double>>
-            {new PositiveDoubleValidator()};
+            {new NotNegativeDoubleValidator()};
 
         /// <summary>
         /// Высота подъема.
         /// </summary>
         public static readonly List<IValidator<double>> LiftHeight = new List<IValidator<double>>
-            {new PositiveDoubleValidator()};
+            {new NotNegativeDoubleValidator()};
 
         /// <summary>
         /// Количество отверстий.

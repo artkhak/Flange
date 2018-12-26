@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Flange.Model;
 
 namespace Flange.ViewModels
@@ -9,6 +11,11 @@ namespace Flange.ViewModels
     /// </summary>
     public class ParameterVM : DataVM
     {
+        /// <summary>
+        /// Отображаемое значение.
+        /// </summary>
+        private string _displayedValue;
+
         /// <summary>
         /// Параметер.
         /// </summary>
@@ -29,14 +36,26 @@ namespace Flange.ViewModels
         public string Name => _parameter.Name;
 
         /// <summary>
-        /// Значение.
+        /// Отображаемое значение.
         /// </summary>
-        public double Value
+        public string DisplayedValue
         {
-            get => _parameter.Value;
+            get => _displayedValue;
             set
             {
-                _parameter.Value = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    _parameter.Value = 0;
+                    _displayedValue = value;
+                }
+                else if (double.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out var doubleValue))
+                {
+                    _parameter.Value = doubleValue;
+                    _displayedValue = value.Last().ToString().Equals(CultureInfo.InvariantCulture.NumberFormat.CurrencyDecimalSeparator)
+                        ? value
+                        : _parameter.Value.ToString(CultureInfo.InvariantCulture);
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -48,7 +67,10 @@ namespace Flange.ViewModels
         /// <returns>Список ошибок.</returns>
         public override IEnumerable GetErrors(string propertyName)
         {
-            return _parameter.Errors;
+            if (propertyName == nameof(DisplayedValue))
+                return _parameter.Errors;
+
+            return string.Empty;
         }
 
         /// <summary>

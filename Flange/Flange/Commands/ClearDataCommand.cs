@@ -22,7 +22,7 @@ namespace Flange.Commands
         /// <param name="flangeParametersVM">Вью модель параметров фланца.</param>
         protected override void Execute(FlangeParametersVM flangeParametersVM)
         {
-            throw new NotImplementedException();
+            flangeParametersVM.ParameterVMs.ForEach(p => p.DisplayedValue = "");
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Flange.ViewModels
         /// <summary>
         /// Параметры фланца.
         /// </summary>
-        private readonly FlangeParameters _flangeParameters;
+        public FlangeParameters FlangeParameters { get; }
 
         /// <summary>
         /// Вью-модели параметров.
@@ -26,14 +26,14 @@ namespace Flange.ViewModels
         /// <param name="flangeParameters">Параметры фланца.</param>
         public FlangeParametersVM(FlangeParameters flangeParameters)
         {
-            _flangeParameters = flangeParameters;
-            ParameterVMs = _flangeParameters.Parameters.Select(p => new ParameterVM(p)).ToList();
+            FlangeParameters = flangeParameters;
+            ParameterVMs = FlangeParameters.Parameters.Select(p => new ParameterVM(p)).ToList();
         }
 
         /// <summary>
         /// Указывает, что в данных есть ошибка.
         /// </summary>
-        public override bool HasErrors => _flangeParameters.Errors.Any();
+        public override bool HasErrors => FlangeParameters.Errors.Any();
 
         /// <summary>
         /// Получает список ошибок.
@@ -42,7 +42,7 @@ namespace Flange.ViewModels
         /// <returns>Список ошибок.</returns>
         public override IEnumerable GetErrors(string propertyName)
         {
-            return _flangeParameters.Errors;
+            return FlangeParameters.Errors;
         }
     }
 }
