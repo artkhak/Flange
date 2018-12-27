@@ -11,16 +11,6 @@ namespace Flange.ViewModels
     public class FlangeParametersVM : DataVM
     {
         /// <summary>
-        /// Параметры фланца.
-        /// </summary>
-        public FlangeParameters FlangeParameters { get; }
-
-        /// <summary>
-        /// Вью-модели параметров.
-        /// </summary>
-        public List<ParameterVM> ParameterVMs { get; }
-
-        /// <summary>
         /// Конструктор.
         /// </summary>
         /// <param name="flangeParameters">Параметры фланца.</param>
@@ -31,9 +21,19 @@ namespace Flange.ViewModels
         }
 
         /// <summary>
+        /// Параметры фланца.
+        /// </summary>
+        public FlangeParameters FlangeParameters { get; }
+
+        /// <summary>
+        /// Вью-модели параметров.
+        /// </summary>
+        public List<ParameterVM> ParameterVMs { get; }
+
+        /// <summary>
         /// Указывает, что в данных есть ошибка.
         /// </summary>
-        public override bool HasErrors => FlangeParameters.Errors.Any();
+        public override bool HasErrors => false;
 
         /// <summary>
         /// Получает список ошибок.

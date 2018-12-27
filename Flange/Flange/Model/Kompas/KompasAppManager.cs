@@ -15,17 +15,17 @@ namespace Flange.Model.Kompas
         private const string ProgId = "KOMPAS.Application.5";
 
         /// <summary>
-        /// Получает объект <see cref="Kompas"/> с запущенным КОМПАС-3D.
+        /// Получает объект <see cref="Kompas" /> с запущенным КОМПАС-3D.
         /// </summary>
-        /// <returns>Объект <see cref="Kompas"/> с экзкмпляром запущеного КОМПАС-3D.</returns>
-        public static Model.Kompas.Kompas GetActive()
+        /// <returns>Объект <see cref="Kompas" /> с экзкмпляром запущеного КОМПАС-3D.</returns>
+        public static Kompas GetActive()
         {
             try
             {
                 var kompasInstance = (KompasObject) Marshal.GetActiveObject(ProgId);
                 return PrepareAndPackKompas(kompasInstance);
             }
-            catch (InvalidComObjectException)
+            catch (Exception)
             {
                 return null;
             }
@@ -35,7 +35,7 @@ namespace Flange.Model.Kompas
         /// Запустить КОМПАС-3D.
         /// </summary>
         /// <returns>Объект <see cref="Kompas" /> с экзкмпляром запущеного КОМПАС-3D.</returns>
-        public static Model.Kompas.Kompas Start()
+        public static Kompas Start()
         {
             var appType = Type.GetTypeFromProgID(ProgId);
 
@@ -51,12 +51,12 @@ namespace Flange.Model.Kompas
         /// </summary>
         /// <param name="kompasInstance">Экземпляр <see cref="KompasObject" />.</param>
         /// <returns>Объект <see cref="Kompas" />.</returns>
-        private static Model.Kompas.Kompas PrepareAndPackKompas(KompasObject kompasInstance)
+        private static Kompas PrepareAndPackKompas(KompasObject kompasInstance)
         {
             kompasInstance.Visible = true;
             kompasInstance.ActivateControllerAPI();
 
-            return new Model.Kompas.Kompas(kompasInstance);
+            return new Kompas(kompasInstance);
         }
     }
 }

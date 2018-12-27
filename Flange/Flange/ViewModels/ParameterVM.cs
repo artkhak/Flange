@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Flange.Model;
 
 namespace Flange.ViewModels
@@ -12,14 +11,14 @@ namespace Flange.ViewModels
     public class ParameterVM : DataVM
     {
         /// <summary>
-        /// Отображаемое значение.
-        /// </summary>
-        private string _displayedValue;
-
-        /// <summary>
         /// Параметер.
         /// </summary>
         private readonly Parameter _parameter;
+
+        /// <summary>
+        /// Отображаемое значение.
+        /// </summary>
+        private string _displayedValue;
 
         /// <summary>
         /// Конструктор.
@@ -51,7 +50,8 @@ namespace Flange.ViewModels
                 else if (double.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out var doubleValue))
                 {
                     _parameter.Value = doubleValue;
-                    _displayedValue = value.Last().ToString().Equals(CultureInfo.InvariantCulture.NumberFormat.CurrencyDecimalSeparator)
+                    _displayedValue = value.Last().ToString()
+                        .Equals(CultureInfo.InvariantCulture.NumberFormat.CurrencyDecimalSeparator)
                         ? value
                         : _parameter.Value.ToString(CultureInfo.InvariantCulture);
                 }
@@ -59,6 +59,11 @@ namespace Flange.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Указывает, что в данных есть ошибка.
+        /// </summary>
+        public override bool HasErrors => _parameter.Errors.Any();
 
         /// <summary>
         /// Получает список ошибок.
@@ -72,10 +77,5 @@ namespace Flange.ViewModels
 
             return string.Empty;
         }
-
-        /// <summary>
-        /// Указывает, что в данных есть ошибка.
-        /// </summary>
-        public override bool HasErrors => _parameter.Errors.Any();
     }
 }

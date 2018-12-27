@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Flange.Model;
 using Flange.Model.Flange;
 using Flange.Model.Validators;
 using Flange.ViewModels;

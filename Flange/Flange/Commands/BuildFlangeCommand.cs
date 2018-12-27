@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using System.Text;
 using Flange.Commands.BaseCommands;
 using Flange.Model.Flange;
-using Flange.ViewModels;
+using Flange.Model.Kompas;
 
 namespace Flange.Commands
 {
@@ -11,6 +11,11 @@ namespace Flange.Commands
     /// </summary>
     public class BuildFlangeCommand : CommandBaseWithTypedParameter<FlangeParameters>
     {
+        /// <summary>
+        /// Угол подъема.
+        /// </summary>
+        private const int ChamferAngle = 45;
+
         /// <summary>
         /// Конструктор.
         /// </summary>
@@ -25,7 +30,7 @@ namespace Flange.Commands
         /// <returns>Указывает на возможность выполнения команды.</returns>
         protected override bool CanExecute(FlangeParameters flangeParameters)
         {
-            return !flangeParameters.Errors.Any() && !flangeParameters.Parameters.Any(p => p.Errors.Any());
+            return !flangeParameters.Parameters.Any(p => p.Errors.Any());
         }
 
         /// <summary>
@@ -34,7 +39,31 @@ namespace Flange.Commands
         /// <param name="flangeParameters">Параметры фланца.</param>
         protected override void Execute(FlangeParameters flangeParameters)
         {
-            throw new NotImplementedException();
+            if (CheckErrors(flangeParameters))
+                return;
+
+            var kompas = KompasAppManager.GetActive() ?? KompasAppManager.Start();
+            var builder = new FlangeBuilder(kompas);
+            builder.Build(flangeParameters);
+        }
+
+        /// <summary>
+        /// Проверяет параметры на ошибки.
+        /// </summary>
+        /// <param name="flangeParameters">Параметры фланца.</param>
+        /// <returns>Есть ли ошибки?</returns>
+        private static bool CheckErrors(FlangeParameters flangeParameters)
+        {
+            if (!flangeParameters.Errors.Any())
+                return false;
+
+            var sb = new StringBuilder();
+            flangeParameters.Errors.ForEach(er => sb.AppendLine($"{er}\n"));
+            sb.Remove(sb.Length - 1, 1);
+
+            MessageViewer.Error("Построение модели", sb.ToString());
+
+            return true;
         }
     }
 }

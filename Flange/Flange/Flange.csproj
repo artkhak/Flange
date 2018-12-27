@@ -90,6 +90,7 @@
     <Compile Include="Model\FlangeBuilder.cs" />
     <Compile Include="Model\Flange\FlangeParameterNames.cs" />
     <Compile Include="Model\Flange\FlangeParameterValidators.cs" />
+    <Compile Include="Model\Kompas\FlangeBuilder.cs" />
     <Compile Include="Model\Kompas\Kompas.cs" />
     <Compile Include="Model\Kompas\KompasAppManager.cs" />
     <Compile Include="Model\Parameter.cs" />

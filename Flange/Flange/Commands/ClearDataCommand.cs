@@ -1,5 +1,6 @@
-﻿using System;
+﻿using System.Linq;
 using Flange.Commands.BaseCommands;
+using Flange.Model.Flange;
 using Flange.ViewModels;
 
 namespace Flange.Commands
@@ -23,6 +24,11 @@ namespace Flange.Commands
         protected override void Execute(FlangeParametersVM flangeParametersVM)
         {
             flangeParametersVM.ParameterVMs.ForEach(p => p.DisplayedValue = "");
+
+            var numberOfBore =
+                flangeParametersVM.ParameterVMs.First(p => p.Name == FlangeParameterNames.NumberOfBore);
+
+            numberOfBore.DisplayedValue = "5";
         }
     }
 }

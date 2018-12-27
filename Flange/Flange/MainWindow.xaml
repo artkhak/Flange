@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Flange"
         xmlns:viewModels="clr-namespace:Flange.ViewModels"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         SizeToContent="Height"
@@ -17,7 +18,16 @@
             <Setter Property="Height" Value="20" />
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="BorderBrush" Value="Red" />
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5,3" />
+            <Setter Property="Height" Value="20" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="ToolTip"
                             Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                 </Trigger>
@@ -39,7 +49,7 @@
             <MenuItem Header="Деталь">
                 <MenuItem Header="Построить" />
                 <Separator />
-                <MenuItem Header="Очистить" 
+                <MenuItem Header="Очистить"
                           CommandParameter="{Binding FlangeParametersVM}"
                           Command="{Binding ClearFlangeParameterValuesCommand}" />
             </MenuItem>
@@ -50,71 +60,76 @@
         <GroupBox Margin="5" Header="Параметры модели" DockPanel.Dock="Top">
             <Grid DataContext="{Binding FlangeParametersVM}">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0"
-                           Text="{Binding ParameterVMs[0].Name}"/>
+                           Text="{Binding ParameterVMs[0].Name}" />
                 <TextBox Grid.Row="0" Grid.Column="1"
-                           Text="{Binding ParameterVMs[0].DisplayedValue, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding ParameterVMs[0].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Grid.Row="1" Grid.Column="0"
-                           Text="{Binding ParameterVMs[1].Name}"/>
+                           Text="{Binding ParameterVMs[1].Name}" />
                 <TextBox Grid.Row="1" Grid.Column="1"
-                         Text="{Binding ParameterVMs[1].DisplayedValue, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding ParameterVMs[1].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Grid.Row="2" Grid.Column="0"
-                           Text="{Binding ParameterVMs[2].Name}"/>
+                           Text="{Binding ParameterVMs[2].Name}" />
                 <TextBox Grid.Row="2" Grid.Column="1"
-                         Text="{Binding ParameterVMs[2].DisplayedValue, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding ParameterVMs[2].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Grid.Row="3" Grid.Column="0"
-                           Text="{Binding ParameterVMs[3].Name}"/>
+                           Text="{Binding ParameterVMs[3].Name}" />
                 <TextBox Grid.Row="3" Grid.Column="1"
-                         Text="{Binding ParameterVMs[3].DisplayedValue, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding ParameterVMs[3].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Grid.Row="4" Grid.Column="0"
-                           Text="{Binding ParameterVMs[4].Name}"/>
+                           Text="{Binding ParameterVMs[4].Name}" />
                 <TextBox Grid.Row="4" Grid.Column="1"
-                         Text="{Binding ParameterVMs[4].DisplayedValue, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding ParameterVMs[4].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Grid.Row="5" Grid.Column="0"
-                           Text="{Binding ParameterVMs[5].Name}"/>
+                           Text="{Binding ParameterVMs[5].Name}" />
                 <TextBox Grid.Row="5" Grid.Column="1"
-                         Text="{Binding ParameterVMs[5].DisplayedValue, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding ParameterVMs[5].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Grid.Row="6" Grid.Column="0"
-                           Text="{Binding ParameterVMs[6].Name}"/>
+                           Text="{Binding ParameterVMs[6].Name}" />
                 <TextBox Grid.Row="6" Grid.Column="1"
-                         Text="{Binding ParameterVMs[6].DisplayedValue, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding ParameterVMs[6].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Grid.Row="7" Grid.Column="0"
-                           Text="{Binding ParameterVMs[7].Name}"/>
-                <TextBox Grid.Row="7" Grid.Column="1"
-                         Text="{Binding ParameterVMs[7].DisplayedValue, UpdateSourceTrigger=PropertyChanged}"/>
+                           Text="{Binding ParameterVMs[7].Name}" />
+                <ComboBox Grid.Row="7" Grid.Column="1" SelectedIndex="0"
+                          Text="{Binding ParameterVMs[7].DisplayedValue}">
+                    <system:String>5</system:String>
+                    <system:String>6</system:String>
+                    <system:String>8</system:String>
+                    <system:String>10</system:String>
+                </ComboBox>
             </Grid>
         </GroupBox>
         <StackPanel Margin="5" DockPanel.Dock="Top"
                     Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Очистить"
-                    Height="25" Width="90" 
+                    Height="25" Width="90"
                     CommandParameter="{Binding FlangeParametersVM}"
                     Command="{Binding ClearFlangeParameterValuesCommand}" />
             <Button Margin="5,0,0,0" Content="Построить"
-                    Height="25" Width="90"  
+                    Height="25" Width="90"
                     CommandParameter="{Binding FlangeParametersVM.FlangeParameters}"
-                    Command="{Binding BuildFlangeCommand}"/>
+                    Command="{Binding BuildFlangeCommand}" />
         </StackPanel>
     </DockPanel>
 </Window>

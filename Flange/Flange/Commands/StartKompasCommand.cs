@@ -1,5 +1,4 @@
 ﻿using Flange.Commands.BaseCommands;
-using Flange.Model;
 using Flange.Model.Kompas;
 
 namespace Flange.Commands

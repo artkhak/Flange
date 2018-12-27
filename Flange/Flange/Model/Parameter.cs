@@ -12,7 +12,7 @@ namespace Flange.Model
         /// <summary>
         /// Список валидаторов.
         /// </summary>
-        private List<IValidator<double>> _validators;
+        private readonly List<IValidator<double>> _validators;
 
         /// <summary>
         /// Конструктор.

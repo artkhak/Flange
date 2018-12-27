@@ -74,20 +74,6 @@ namespace Flange.Model.Flange
             }
         }
 
-        private void ValidateDiameterForCenter(double value)
-        {
-            if (LiftDiameter > 0)
-            {
-                if (LiftDiameter + BoreDiameter >= value)
-                    throw new ArgumentException("1111111");
-            }
-            else
-            {
-                if (CentralHoleDiameter + BoreDiameter >= value)
-                    throw new ArgumentException("2222222");
-            }
-        }
-
         /// <summary>
         /// Диаметр центрального отверстия.
         /// </summary>
@@ -163,6 +149,20 @@ namespace Flange.Model.Flange
             {
                 ValidatePositiveNumber(value);
                 _numberOfBore = value;
+            }
+        }
+
+        private void ValidateDiameterForCenter(double value)
+        {
+            if (LiftDiameter > 0)
+            {
+                if (LiftDiameter + BoreDiameter >= value)
+                    throw new ArgumentException("1111111");
+            }
+            else
+            {
+                if (CentralHoleDiameter + BoreDiameter >= value)
+                    throw new ArgumentException("2222222");
             }
         }
 

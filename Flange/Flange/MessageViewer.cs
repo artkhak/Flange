@@ -3,7 +3,7 @@
 namespace Flange
 {
     /// <summary>
-    /// Используется для отображения сообщений пользователю с помощью <see cref="MessageBox"/>.
+    /// Используется для отображения сообщений пользователю с помощью <see cref="MessageBox" />.
     /// </summary>
     public class MessageViewer
     {
@@ -16,7 +16,7 @@ namespace Flange
         {
             MessageBox.Show(message, title, MessageBoxButton.OK);
         }
-        
+
         /// <summary>
         /// Отображает ошибку.
         /// </summary>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using Flange.Model.Validators;
 
 namespace Flange.Model.Flange
@@ -14,13 +13,13 @@ namespace Flange.Model.Flange
         /// <summary>
         /// Валидатор.
         /// </summary>
-        private readonly IValidator<List<Parameter>> _validator;
+        private readonly IValidator<FlangeParameters> _validator;
 
         /// <summary>
         /// Конструктор.
         /// </summary>
         /// <param name="validator">Валидатор.</param>
-        public FlangeParameters(IValidator<List<Parameter>> validator)
+        public FlangeParameters(IValidator<FlangeParameters> validator)
         {
             _validator = validator;
             Parameters = new List<Parameter>
@@ -44,7 +43,7 @@ namespace Flange.Model.Flange
         /// <summary>
         /// Список ошибок.
         /// </summary>
-        public List<string> Errors => _validator.Validate(Parameters).ToList();
+        public List<string> Errors => _validator.Validate(this).ToList();
 
         /// <summary>
         /// Индексатор для получения значения свойств.
