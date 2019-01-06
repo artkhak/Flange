@@ -47,7 +47,9 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" Margin="0" Height="20">
             <MenuItem Header="Деталь">
-                <MenuItem Header="Построить" />
+                <MenuItem Header="Построить" 
+                          CommandParameter="{Binding FlangeParametersVM.FlangeParameters}"
+                          Command="{Binding BuildFlangeCommand}"/>
                 <Separator />
                 <MenuItem Header="Очистить"
                           CommandParameter="{Binding FlangeParametersVM}"
