@@ -1,9 +1,9 @@
-﻿<Application x:Class="Flange.App"
+﻿<Application x:Class="Flange.UI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Flange"
+             xmlns:local="clr-namespace:Flange.UI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-
+         
     </Application.Resources>
 </Application>

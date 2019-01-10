@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flange", "Flange\Flange.csproj", "{3B72DAC3-AE33-4DA5-AFA3-96DB1E9AF7A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flangeaa", "Flangeaa\Flangeaa.csproj", "{3B72DAC3-AE33-4DA5-AFA3-96DB1E9AF7A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flange.UI", "Flange.UI\Flange.UI.csproj", "{2FB36F96-997C-44A9-B249-82AB7811D24B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3B72DAC3-AE33-4DA5-AFA3-96DB1E9AF7A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B72DAC3-AE33-4DA5-AFA3-96DB1E9AF7A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B72DAC3-AE33-4DA5-AFA3-96DB1E9AF7A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FB36F96-997C-44A9-B249-82AB7811D24B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB36F96-997C-44A9-B249-82AB7811D24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB36F96-997C-44A9-B249-82AB7811D24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB36F96-997C-44A9-B249-82AB7811D24B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

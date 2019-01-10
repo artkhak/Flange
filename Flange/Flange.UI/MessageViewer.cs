@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Flange
+namespace Flange.UI
 {
     /// <summary>
     /// Используется для отображения сообщений пользователю с помощью <see cref="MessageBox" />.

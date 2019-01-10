@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Flange.Model.Flange;
 
-namespace Flange.ViewModels
+namespace Flange.UI.ViewModels
 {
     /// <summary>
     /// Вью-модель для параметров фланца.

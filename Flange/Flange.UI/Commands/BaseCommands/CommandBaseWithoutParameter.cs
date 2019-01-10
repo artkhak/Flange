@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Flange.Commands.BaseCommands
+namespace Flange.UI.Commands.BaseCommands
 {
     /// <summary>
     /// База команды без параметра.

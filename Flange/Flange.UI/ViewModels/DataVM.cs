@@ -2,9 +2,9 @@
 using System.Collections;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Flange.Properties;
+using Flange.UI.Annotations;
 
-namespace Flange.ViewModels
+namespace Flange.UI.ViewModels
 {
     /// <summary>
     /// Базовая вью-модель.

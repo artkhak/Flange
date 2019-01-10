@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Flange.Properties
+namespace Flange.UI.Properties
 {
 
 

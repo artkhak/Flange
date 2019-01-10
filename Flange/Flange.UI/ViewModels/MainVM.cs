@@ -1,6 +1,9 @@
 ﻿using Flange.Commands;
+using BuildFlangeCommand = Flange.UI.Commands.BuildFlangeCommand;
+using ClearFlangeParameterValuesCommand = Flange.UI.Commands.ClearFlangeParameterValuesCommand;
+using StartKompasCommand = Flange.UI.Commands.StartKompasCommand;
 
-namespace Flange.ViewModels
+namespace Flange.UI.ViewModels
 {
     /// <summary>
     /// Основная вью-модель.

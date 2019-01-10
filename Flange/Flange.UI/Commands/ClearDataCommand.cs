@@ -1,9 +1,7 @@
-﻿using System.Linq;
-using Flange.Commands.BaseCommands;
-using Flange.Model.Flange;
-using Flange.ViewModels;
+﻿using Flange.Model.Flange;
+using Flange.UI.Commands.BaseCommands;
 
-namespace Flange.Commands
+namespace Flange.UI.Commands
 {
     /// <summary>
     /// Комманда очистки значений параметров фланца.

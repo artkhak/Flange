@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Text;
-using Flange.Commands.BaseCommands;
 using Flange.Model.Flange;
 using Flange.Model.Kompas;
+using Flange.UI.Commands.BaseCommands;
 
-namespace Flange.Commands
+namespace Flange.UI.Commands
 {
     /// <summary>
     /// Команда построения фланца.

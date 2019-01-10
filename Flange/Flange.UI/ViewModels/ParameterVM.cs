@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using Flange.Model;
 
-namespace Flange.ViewModels
+namespace Flange.UI.ViewModels
 {
     /// <summary>
     /// Вью-модель параметра.
