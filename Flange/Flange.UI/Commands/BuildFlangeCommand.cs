@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
-using Flange.Model.Flange;
-using Flange.Model.Kompas;
+using Flange.FlangeBuild;
+using Flange.Kompas;
 using Flange.UI.Commands.BaseCommands;
 
 namespace Flange.UI.Commands
@@ -11,11 +11,6 @@ namespace Flange.UI.Commands
     /// </summary>
     public class BuildFlangeCommand : CommandBaseWithTypedParameter<FlangeParameters>
     {
-        /// <summary>
-        /// Угол подъема.
-        /// </summary>
-        private const int ChamferAngle = 45;
-
         /// <summary>
         /// Конструктор.
         /// </summary>
@@ -57,11 +52,11 @@ namespace Flange.UI.Commands
             if (!flangeParameters.Errors.Any())
                 return false;
 
-            var sb = new StringBuilder();
-            flangeParameters.Errors.ForEach(er => sb.AppendLine($"{er}\n"));
-            sb.Remove(sb.Length - 1, 1);
+            var errorStringBuilder = new StringBuilder();
+            flangeParameters.Errors.ForEach(er => errorStringBuilder.AppendLine($"{er}\n"));
+            errorStringBuilder.Remove(errorStringBuilder.Length - 1, 1);
 
-            MessageViewer.Error("Построение модели", sb.ToString());
+            MessageViewer.Error("Построение модели", errorStringBuilder.ToString());
 
             return true;
         }

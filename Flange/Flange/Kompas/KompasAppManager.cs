@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using Kompas6API5;
 
-namespace Flange.Model.Kompas
+namespace Flange.Kompas
 {
     /// <summary>
     /// Менеджер приложения КОМПАС-3D.

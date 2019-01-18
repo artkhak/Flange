@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Flange.Model.Validators
+﻿namespace Flange.Validators
 {
     /// <summary>
     /// Интерфейс объекта для проверки значения.
@@ -12,7 +10,7 @@ namespace Flange.Model.Validators
         /// Проверяет значение.
         /// </summary>
         /// <param name="value">Значение.</param>
-        /// <returns>Список ошибок.</returns>
-        IEnumerable<string> Validate(T value);
+        /// <returns>Ошибка.</returns>
+        string Validate(T value);
     }
 }

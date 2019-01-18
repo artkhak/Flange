@@ -1,4 +1,4 @@
-﻿using Flange.Model.Kompas;
+﻿using Flange.Kompas;
 using Flange.UI.Commands.BaseCommands;
 
 namespace Flange.UI.Commands

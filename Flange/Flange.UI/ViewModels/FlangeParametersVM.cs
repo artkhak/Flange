@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Flange.Model.Flange;
+using Flange.FlangeBuild;
 
 namespace Flange.UI.ViewModels
 {

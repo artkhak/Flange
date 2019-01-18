@@ -2,7 +2,7 @@
 using System.Collections;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Flange.UI.Annotations;
+using Flange.UI.Properties;
 
 namespace Flange.UI.ViewModels
 {

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using Flange.Model.Validators;
+using Flange.Validators;
+using Flange.Validators.Values;
 
-namespace Flange.Model.Flange
+namespace Flange.FlangeBuild
 {
     /// <summary>
     /// Валидаторы для параметров фланца.

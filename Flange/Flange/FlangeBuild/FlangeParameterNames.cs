@@ -1,9 +1,9 @@
-﻿namespace Flange.Model.Flange
+﻿namespace Flange.FlangeBuild
 {
     /// <summary>
     /// Названия параметров фланца.
     /// </summary>
-    internal static class FlangeParameterNames
+    public static class FlangeParameterNames
     {
         /// <summary>
         /// Диаметр основания.

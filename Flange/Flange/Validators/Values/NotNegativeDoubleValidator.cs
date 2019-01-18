@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Flange.Model.Validators
+﻿namespace Flange.Validators.Values
 {
     /// <summary>
     /// Проверяет, что значение не отрицательно.
@@ -12,9 +10,9 @@ namespace Flange.Model.Validators
         /// </summary>
         /// <param name="value">Значение.</param>
         /// <returns>Список ошибок.</returns>
-        public IEnumerable<string> Validate(double value)
+        public string Validate(double value)
         {
-            return value < 0 ? new List<string> {"Значение должно быть не отрицательным"} : new List<string>();
+            return value < 0 ? "Значение должно быть не отрицательным" : null;
         }
     }
 }

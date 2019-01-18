@@ -66,6 +66,7 @@
     <Compile Include="Commands\ClearDataCommand.cs" />
     <Compile Include="Commands\StartKompasCommand.cs" />
     <Compile Include="MessageViewer.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\DataVM.cs" />
     <Compile Include="ViewModels\FlangeParametersVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
@@ -107,9 +108,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Flange\Flangeaa.csproj">
-      <Project>{3b72dac3-ae33-4da5-afa3-96db1e9af7a0}</Project>
-      <Name>Flangeaa</Name>
+    <ProjectReference Include="..\Flange\Flange.csproj">
+      <Project>{f3a9f602-bd7b-4321-9b26-d95fec0f725b}</Project>
+      <Name>Flange</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

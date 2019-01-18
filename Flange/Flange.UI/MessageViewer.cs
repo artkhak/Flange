@@ -5,18 +5,8 @@ namespace Flange.UI
     /// <summary>
     /// Используется для отображения сообщений пользователю с помощью <see cref="MessageBox" />.
     /// </summary>
-    public class MessageViewer
+    public static class MessageViewer
     {
-        /// <summary>
-        /// Отображает сообщение.
-        /// </summary>
-        /// <param name="title">Название.</param>
-        /// <param name="message">Сообщение.</param>
-        public static void Message(string title, string message)
-        {
-            MessageBox.Show(message, title, MessageBoxButton.OK);
-        }
-
         /// <summary>
         /// Отображает ошибку.
         /// </summary>

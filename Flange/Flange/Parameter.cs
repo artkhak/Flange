@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Flange.Model.Validators;
+using Flange.Validators;
 
-namespace Flange.Model
+namespace Flange
 {
     /// <summary>
     /// Параметер.
@@ -19,10 +19,12 @@ namespace Flange.Model
         /// </summary>
         /// <param name="name">Название.</param>
         /// <param name="validators">Список валидаторов.</param>
-        public Parameter(string name, List<IValidator<double>> validators)
+        /// <param name="possibleValues">Возможные значения.</param>
+        public Parameter(string name, List<IValidator<double>> validators, List<double> possibleValues = null)
         {
             Name = name;
             _validators = validators;
+            PossibleValues = possibleValues;
         }
 
         /// <summary>
@@ -36,8 +38,15 @@ namespace Flange.Model
         public double Value { get; set; }
 
         /// <summary>
+        /// Возможные значения.
+        /// </summary>
+        public List<double> PossibleValues { get; }
+
+        /// <summary>
         /// Список ошибок.
         /// </summary>
-        public List<string> Errors => _validators?.SelectMany(v => v?.Validate(Value)).ToList();
+        public List<string> Errors => _validators?.Select(validator => validator?.Validate(Value))
+            .Where(error => !string.IsNullOrWhiteSpace(error))
+            .ToList();
     }
 }

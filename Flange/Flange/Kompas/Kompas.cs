@@ -1,7 +1,7 @@
 ﻿using System;
 using Kompas6API5;
 
-namespace Flange.Model.Kompas
+namespace Flange.Kompas
 {
     public class Kompas
     {
@@ -21,9 +21,10 @@ namespace Flange.Model.Kompas
         /// <returns>3D документ.</returns>
         public Document3D CreateDocument3D()
         {
-            var document3D = _kompasInstance.Document3D();
+            Document3D document3D = _kompasInstance.Document3D();
 
-            if (!document3D.Create(false, false)) throw new Exception("Не удалось создать 3D документ");
+            if (!document3D.Create(false, false))
+                throw new Exception("Не удалось создать 3D документ");
 
             return document3D;
         }

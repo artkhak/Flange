@@ -1,5 +1,7 @@
-﻿using Flange.Model.Flange;
+﻿using System.Globalization;
+using System.Linq;
 using Flange.UI.Commands.BaseCommands;
+using Flange.UI.ViewModels;
 
 namespace Flange.UI.Commands
 {
@@ -15,18 +17,33 @@ namespace Flange.UI.Commands
         {
         }
 
+        protected override bool CanExecute(FlangeParametersVM flangeParametersVM)
+        {
+            foreach (var parameter in flangeParametersVM.ParameterVMs)
+            {
+                if (parameter.PossibleValues == null)
+                {
+                    if (!string.IsNullOrWhiteSpace(parameter.DisplayedValue))
+                        return true;
+                }
+                else if (parameter.DisplayedValue != parameter.PossibleValues?.First())
+                    return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Вызывает выполнение команды.
         /// </summary>
         /// <param name="flangeParametersVM">Вью модель параметров фланца.</param>
         protected override void Execute(FlangeParametersVM flangeParametersVM)
         {
-            flangeParametersVM.ParameterVMs.ForEach(p => p.DisplayedValue = "");
-
-            var numberOfBore =
-                flangeParametersVM.ParameterVMs.First(p => p.Name == FlangeParameterNames.NumberOfBore);
-
-            numberOfBore.DisplayedValue = "5";
+            foreach (var parameter in flangeParametersVM.ParameterVMs)
+            {
+                var firstPossibleValue = parameter.PossibleValues?.First().ToString(CultureInfo.InvariantCulture);
+                parameter.DisplayedValue = firstPossibleValue ?? "";
+            }
         }
     }
 }

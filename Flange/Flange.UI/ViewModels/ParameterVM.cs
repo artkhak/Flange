@@ -1,7 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Flange.Model;
 
 namespace Flange.UI.ViewModels
 {
@@ -64,6 +64,13 @@ namespace Flange.UI.ViewModels
         /// Указывает, что в данных есть ошибка.
         /// </summary>
         public override bool HasErrors => _parameter.Errors.Any();
+
+        /// <summary>
+        /// Возможные значения.
+        /// </summary>
+        public List<string> PossibleValues => _parameter.PossibleValues?
+            .Select(possibleValue => possibleValue.ToString(CultureInfo.CurrentCulture))
+            .ToList();
 
         /// <summary>
         /// Получает список ошибок.

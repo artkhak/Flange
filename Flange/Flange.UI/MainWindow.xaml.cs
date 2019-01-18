@@ -1,6 +1,5 @@
 ﻿using System.Windows;
-using Flange.Model.Flange;
-using Flange.Model.Validators;
+using Flange.FlangeBuild;
 using Flange.UI.ViewModels;
 
 namespace Flange.UI
@@ -15,7 +14,7 @@ namespace Flange.UI
         /// </summary>
         public MainWindow()
         {
-            DataContext = new MainVM(new FlangeParametersVM(new FlangeParameters(new FlangeParametersValidator())));
+            DataContext = new MainVM(new FlangeParametersVM(new FlangeParameters()));
             InitializeComponent();
         }
     }

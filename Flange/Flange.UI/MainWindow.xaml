@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Flange"
         xmlns:viewModels="clr-namespace:Flange.UI.ViewModels"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:viewModels1="clr-namespace:Flange.UI.ViewModels"
@@ -14,6 +13,7 @@
         d:DataContext="{d:DesignInstance Type=viewModels1:MainVM, IsDesignTimeCreatable=False}">
 
     <Window.Resources>
+
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="5,3" />
             <Setter Property="Height" Value="20" />
@@ -24,9 +24,10 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
         <Style TargetType="ComboBox">
             <Setter Property="Margin" Value="5,3" />
-            <Setter Property="Height" Value="20" />
+            <Setter Property="Height" Value="21" />
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="ToolTip"
@@ -34,10 +35,11 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
         <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="5,3" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+
         <Style TargetType="Menu">
             <Setter Property="Margin" Value="0,2" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -48,9 +50,9 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" Margin="0" Height="20">
             <MenuItem Header="Деталь">
-                <MenuItem Header="Построить" 
+                <MenuItem Header="Построить"
                           CommandParameter="{Binding FlangeParametersVM.FlangeParameters}"
-                          Command="{Binding BuildFlangeCommand}"/>
+                          Command="{Binding BuildFlangeCommand}" />
                 <Separator />
                 <MenuItem Header="Очистить"
                           CommandParameter="{Binding FlangeParametersVM}"
@@ -61,70 +63,55 @@
             </MenuItem>
         </Menu>
         <GroupBox Margin="5" Header="Параметры модели" DockPanel.Dock="Top">
-            <Grid DataContext="{Binding FlangeParametersVM}">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="100" />
-                </Grid.ColumnDefinitions>
+            <ItemsControl Margin="5" ItemsSource="{Binding FlangeParametersVM.ParameterVMs}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="viewModels:ParameterVM">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Right"
+                                        Width="100">
+                                <ComboBox SelectedItem="{Binding DisplayedValue, UpdateSourceTrigger=PropertyChanged}"
+                                          ItemsSource="{Binding PossibleValues}"
+                                          SelectedIndex="0">
+                                    <ComboBox.Style>
+                                        <Style TargetType="ComboBox" 
+                                               BasedOn="{StaticResource {x:Type ComboBox}}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding PossibleValues}" 
+                                                             Value="{x:Null}">
+                                                    <Setter Property="Visibility" 
+                                                            Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ComboBox.Style>
+                                </ComboBox>
+                                <TextBox Text="{Binding DisplayedValue, UpdateSourceTrigger=PropertyChanged}">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox" 
+                                               BasedOn="{StaticResource {x:Type TextBox}}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding PossibleValues}" 
+                                                             Value="{x:Null}" >
+                                                    <Setter Property="Visibility" 
+                                                            Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </StackPanel>
 
-                <TextBlock Grid.Row="0" Grid.Column="0"
-                           Text="{Binding ParameterVMs[0].Name}" />
-                <TextBox Grid.Row="0" Grid.Column="1"
-                         Text="{Binding ParameterVMs[0].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="1" Grid.Column="0"
-                           Text="{Binding ParameterVMs[1].Name}" />
-                <TextBox Grid.Row="1" Grid.Column="1"
-                         Text="{Binding ParameterVMs[1].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="2" Grid.Column="0"
-                           Text="{Binding ParameterVMs[2].Name}" />
-                <TextBox Grid.Row="2" Grid.Column="1"
-                         Text="{Binding ParameterVMs[2].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="3" Grid.Column="0"
-                           Text="{Binding ParameterVMs[3].Name}" />
-                <TextBox Grid.Row="3" Grid.Column="1"
-                         Text="{Binding ParameterVMs[3].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="4" Grid.Column="0"
-                           Text="{Binding ParameterVMs[4].Name}" />
-                <TextBox Grid.Row="4" Grid.Column="1"
-                         Text="{Binding ParameterVMs[4].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="5" Grid.Column="0"
-                           Text="{Binding ParameterVMs[5].Name}" />
-                <TextBox Grid.Row="5" Grid.Column="1"
-                         Text="{Binding ParameterVMs[5].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="6" Grid.Column="0"
-                           Text="{Binding ParameterVMs[6].Name}" />
-                <TextBox Grid.Row="6" Grid.Column="1"
-                         Text="{Binding ParameterVMs[6].DisplayedValue, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="7" Grid.Column="0"
-                           Text="{Binding ParameterVMs[7].Name}" />
-                <ComboBox Grid.Row="7" Grid.Column="1" SelectedIndex="0"
-                          Text="{Binding ParameterVMs[7].DisplayedValue}">
-                    <system:String>5</system:String>
-                    <system:String>6</system:String>
-                    <system:String>8</system:String>
-                    <system:String>10</system:String>
-                </ComboBox>
-            </Grid>
+                            <TextBlock Style="{StaticResource {x:Type TextBlock}}" Text="{Binding Name}" />
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </GroupBox>
-        <StackPanel Margin="5" DockPanel.Dock="Top"
-                    Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Margin="5"
+                    DockPanel.Dock="Top"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
             <Button Content="Очистить"
                     Height="25" Width="90"
                     CommandParameter="{Binding FlangeParametersVM}"
@@ -135,4 +122,4 @@
                     Command="{Binding BuildFlangeCommand}" />
         </StackPanel>
     </DockPanel>
-</Window>
+</Window> 
