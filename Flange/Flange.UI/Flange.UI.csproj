@@ -64,6 +64,7 @@
     <Compile Include="Commands\BaseCommands\CommandBaseWithTypedParameter.cs" />
     <Compile Include="Commands\BuildFlangeCommand.cs" />
     <Compile Include="Commands\ClearDataCommand.cs" />
+    <Compile Include="Commands\SetDefaultValuesCommand.cs" />
     <Compile Include="Commands\StartKompasCommand.cs" />
     <Compile Include="MessageViewer.cs" />
     <Compile Include="Properties\Annotations.cs" />

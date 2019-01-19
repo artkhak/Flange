@@ -73,12 +73,12 @@
                                           ItemsSource="{Binding PossibleValues}"
                                           SelectedIndex="0">
                                     <ComboBox.Style>
-                                        <Style TargetType="ComboBox" 
+                                        <Style TargetType="ComboBox"
                                                BasedOn="{StaticResource {x:Type ComboBox}}">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding PossibleValues}" 
+                                                <DataTrigger Binding="{Binding PossibleValues}"
                                                              Value="{x:Null}">
-                                                    <Setter Property="Visibility" 
+                                                    <Setter Property="Visibility"
                                                             Value="Collapsed" />
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -87,13 +87,13 @@
                                 </ComboBox>
                                 <TextBox Text="{Binding DisplayedValue, UpdateSourceTrigger=PropertyChanged}">
                                     <TextBox.Style>
-                                        <Style TargetType="TextBox" 
+                                        <Style TargetType="TextBox"
                                                BasedOn="{StaticResource {x:Type TextBox}}">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Setter Property="Visibility" Value="Collapsed" />
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding PossibleValues}" 
-                                                             Value="{x:Null}" >
-                                                    <Setter Property="Visibility" 
+                                                <DataTrigger Binding="{Binding PossibleValues}"
+                                                             Value="{x:Null}">
+                                                    <Setter Property="Visibility"
                                                             Value="Visible" />
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -108,18 +108,26 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </GroupBox>
-        <StackPanel Margin="5"
-                    DockPanel.Dock="Top"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-            <Button Content="Очистить"
-                    Height="25" Width="90"
+        <DockPanel DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Left"
+                    Content="Значения по умолчанию"
+                    Height="25" Width="150"
+                    Margin="5,0,0,0"
                     CommandParameter="{Binding FlangeParametersVM}"
-                    Command="{Binding ClearFlangeParameterValuesCommand}" />
-            <Button Margin="5,0,0,0" Content="Построить"
-                    Height="25" Width="90"
-                    CommandParameter="{Binding FlangeParametersVM.FlangeParameters}"
-                    Command="{Binding BuildFlangeCommand}" />
-        </StackPanel>
+                    Command="{Binding SetDefaultValuesCommand}"/>
+            <StackPanel Margin="5"
+                        Orientation="Horizontal"
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Right">
+                <Button Content="Очистить"
+                        Height="25" Width="90"
+                        CommandParameter="{Binding FlangeParametersVM}"
+                        Command="{Binding ClearFlangeParameterValuesCommand}" />
+                <Button Margin="5,0,0,0" Content="Построить"
+                        Height="25" Width="90"
+                        CommandParameter="{Binding FlangeParametersVM.FlangeParameters}"
+                        Command="{Binding BuildFlangeCommand}" />
+            </StackPanel>
+        </DockPanel>
     </DockPanel>
-</Window> 
+</Window>

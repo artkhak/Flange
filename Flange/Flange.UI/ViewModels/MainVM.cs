@@ -15,6 +15,7 @@ namespace Flange.UI.ViewModels
             StartKompasCommand = new StartKompasCommand();
             BuildFlangeCommand = new BuildFlangeCommand();
             ClearFlangeParameterValuesCommand = new ClearFlangeParameterValuesCommand();
+            SetDefaultValuesCommand = new SetDefaultValuesCommand();
         }
 
         /// <summary>
@@ -45,5 +46,10 @@ namespace Flange.UI.ViewModels
         /// Комманда очистки значений параметров фланца.
         /// </summary>
         public ClearFlangeParameterValuesCommand ClearFlangeParameterValuesCommand { get; }
+
+        /// <summary>
+        /// Команда заполнения значениями по умолчанию.
+        /// </summary>
+        public SetDefaultValuesCommand SetDefaultValuesCommand { get; set; }
     }
 }
