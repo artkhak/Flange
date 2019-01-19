@@ -1,4 +1,4 @@
-﻿namespace Flange.FlangeBuild
+﻿namespace Flange
 {
     /// <summary>
     /// Названия параметров фланца.

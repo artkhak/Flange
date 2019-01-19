@@ -25,7 +25,7 @@ namespace Flange.UI.Commands
         /// <returns>Указывает на возможность выполнения команды.</returns>
         protected override bool CanExecute(FlangeParameters flangeParameters)
         {
-            return !flangeParameters.Parameters.Any(p => p.Errors.Any());
+            return flangeParameters.Parameters.All(p => string.IsNullOrWhiteSpace(p.Error));
         }
 
         /// <summary>

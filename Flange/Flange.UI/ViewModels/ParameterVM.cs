@@ -63,7 +63,7 @@ namespace Flange.UI.ViewModels
         /// <summary>
         /// Указывает, что в данных есть ошибка.
         /// </summary>
-        public override bool HasErrors => _parameter.Errors.Any();
+        public override bool HasErrors => !string.IsNullOrWhiteSpace(_parameter.Error);
 
         /// <summary>
         /// Возможные значения.
@@ -79,10 +79,9 @@ namespace Flange.UI.ViewModels
         /// <returns>Список ошибок.</returns>
         public override IEnumerable GetErrors(string propertyName)
         {
-            if (propertyName == nameof(DisplayedValue))
-                return _parameter.Errors;
-
-            return string.Empty;
+            return propertyName == nameof(DisplayedValue) 
+                ? new List<string>{_parameter.Error }
+                : new List<string>();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Flange.Validators;
 using Flange.Validators.Parameters;
+using Flange.Validators.Values;
 
 namespace Flange.FlangeBuild
 {
@@ -21,16 +22,16 @@ namespace Flange.FlangeBuild
         /// </summary>
         public FlangeParameters()
         {
-            var baseDiameter = new Parameter(FlangeParameterNames.BaseDiameter, FlangeParameterValidators.BaseDiameter);
-            var baseHeight = new Parameter(FlangeParameterNames.BaseHeight, FlangeParameterValidators.BaseHeight);
-            var boreDiameter = new Parameter(FlangeParameterNames.BoreDiameter, FlangeParameterValidators.BoreDiameter);
-            var centralHoleDiameter = new Parameter(FlangeParameterNames.CentralHoleDiameter,
-                FlangeParameterValidators.CentralHoleDiameter);
-            var diameterForCenters = new Parameter(FlangeParameterNames.DiameterForCenters,
-                FlangeParameterValidators.DiameterForCenters);
-            var liftDiameter = new Parameter(FlangeParameterNames.LiftDiameter, FlangeParameterValidators.LiftDiameter);
-            var liftHeight = new Parameter(FlangeParameterNames.LiftHeight, FlangeParameterValidators.LiftHeight);
-            var numberOfBore = new Parameter(FlangeParameterNames.NumberOfBore, FlangeParameterValidators.NumberOfBore,
+            var baseDiameter = new Parameter(FlangeParameterNames.BaseDiameter, new PositiveDoubleValidator());
+            var baseHeight = new Parameter(FlangeParameterNames.BaseHeight, new PositiveDoubleValidator());
+            var boreDiameter = new Parameter(FlangeParameterNames.BoreDiameter, new PositiveDoubleValidator());
+            var centralHoleDiameter =
+                new Parameter(FlangeParameterNames.CentralHoleDiameter, new PositiveDoubleValidator());
+            var diameterForCenters =
+                new Parameter(FlangeParameterNames.DiameterForCenters, new PositiveDoubleValidator());
+            var liftDiameter = new Parameter(FlangeParameterNames.LiftDiameter, new NotNegativeDoubleValidator());
+            var liftHeight = new Parameter(FlangeParameterNames.LiftHeight, new NotNegativeDoubleValidator());
+            var numberOfBore = new Parameter(FlangeParameterNames.NumberOfBore, new PositiveDoubleValidator(),
                 new List<double> {5, 6, 8, 10});
 
             Parameters = new List<Parameter>

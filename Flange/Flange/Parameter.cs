@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using Flange.Validators;
 
 namespace Flange
@@ -12,18 +12,20 @@ namespace Flange
         /// <summary>
         /// Список валидаторов.
         /// </summary>
-        private readonly List<IValidator<double>> _validators;
+        private readonly IValidator<double> _validator;
+
+        private double _value;
 
         /// <summary>
         /// Конструктор.
         /// </summary>
         /// <param name="name">Название.</param>
-        /// <param name="validators">Список валидаторов.</param>
+        /// <param name="validator">Валидатор.</param>
         /// <param name="possibleValues">Возможные значения.</param>
-        public Parameter(string name, List<IValidator<double>> validators, List<double> possibleValues = null)
+        public Parameter(string name, IValidator<double> validator = null, List<double> possibleValues = null)
         {
             Name = name;
-            _validators = validators;
+            _validator = validator;
             PossibleValues = possibleValues;
         }
 
@@ -35,7 +37,17 @@ namespace Flange
         /// <summary>
         /// Значение.
         /// </summary>
-        public double Value { get; set; }
+        public double Value
+        {
+            get => _value;
+            set
+            {
+                if (PossibleValues != null && !PossibleValues.Contains(value))
+                    throw new ArgumentException("Значение не входит в список возможных.");
+
+                _value = value;
+            }
+        }
 
         /// <summary>
         /// Возможные значения.
@@ -45,8 +57,6 @@ namespace Flange
         /// <summary>
         /// Список ошибок.
         /// </summary>
-        public List<string> Errors => _validators?.Select(validator => validator?.Validate(Value))
-            .Where(error => !string.IsNullOrWhiteSpace(error))
-            .ToList();
+        public string Error => _validator?.Validate(Value);
     }
 }

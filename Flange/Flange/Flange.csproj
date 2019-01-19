@@ -37,9 +37,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlangeBuild\FlangeParameterNames.cs" />
-    <Compile Include="FlangeBuild\FlangeParameters.cs" />
-    <Compile Include="FlangeBuild\FlangeParameterValidators.cs" />
+    <Compile Include="FlangeParameterNames.cs" />
+    <Compile Include="FlangeParameters.cs" />
     <Compile Include="Kompas\FlangeBuilder.cs" />
     <Compile Include="Kompas\Kompas.cs" />
     <Compile Include="Kompas\KompasAppManager.cs" />

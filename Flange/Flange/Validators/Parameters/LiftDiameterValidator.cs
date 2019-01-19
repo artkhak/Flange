@@ -45,13 +45,16 @@ namespace Flange.Validators.Parameters
             var liftDiameter = _liftDiameter.Value;
             var liftHeight = _liftHeight.Value;
 
+            if (Math.Abs(liftHeight) < double.Epsilon && Math.Abs(liftDiameter) < double.Epsilon)
+                return null;
+
             if (liftHeight > 0 && Math.Abs(liftDiameter) < double.Epsilon)
                 return "Диаметр подъема должен быть задан, если задана высота подъема.";
 
             var centralHoleDiameter = _centralHoleDiameter.Value;
 
             return liftDiameter <= centralHoleDiameter
-                ? $"Диаметр подъма должен быть больше диаметра центрального отверстия ({centralHoleDiameter})."
+                ? $"Диаметр подъема должен быть больше диаметра центрального отверстия ({centralHoleDiameter})."
                 : null;
         }
     }

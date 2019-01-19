@@ -1,4 +1,6 @@
-﻿namespace Flange.Validators.Parameters
+﻿using System;
+
+namespace Flange.Validators.Parameters
 {
     /// <summary>
     /// Валидатор высоты подъема.
@@ -42,12 +44,19 @@
         {
             var liftHeight = _liftHeight.Value;
             var liftDiameter = _liftDiameter.Value;
+
+            if (Math.Abs(liftHeight) < double.Epsilon && Math.Abs(liftDiameter) < double.Epsilon)
+                return null;
+
+            if (liftDiameter > 0 && Math.Abs(liftHeight) < double.Epsilon)
+                return "Высота подъема должна быть задана, если задан диаметр подъема.";
+
             var centralHoleDiameter = _centralHoleDiameter.Value;
 
-            var minLiftHeight = (liftDiameter - centralHoleDiameter) / 2;
+            var maxLiftHeight = (liftDiameter - centralHoleDiameter) / 2;
 
-            return liftHeight > minLiftHeight
-                ? $"Высота подъма должна быть не больше разницы радиусов диаметров подъема и центрального отверстия.({minLiftHeight})."
+            return liftHeight > maxLiftHeight
+                ? $"Высота подъема должна быть не больше разницы радиусов диаметров подъема и центрального отверстия.({maxLiftHeight})."
                 : null;
         }
     }
