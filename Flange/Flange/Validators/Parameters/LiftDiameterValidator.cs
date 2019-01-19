@@ -23,16 +23,23 @@ namespace Flange.Validators.Parameters
         private readonly Parameter _liftHeight;
 
         /// <summary>
+        /// Номинальный диаметр резьбы.
+        /// </summary>
+        private readonly Parameter _nominalDiameter;
+
+        /// <summary>
         /// Конструктор.
         /// </summary>
         /// <param name="liftDiameter">Диаметр подъема.</param>
         /// <param name="liftHeight">Высота подъема.</param>
         /// <param name="centralHoleDiameter">Диаметр центрального отверстия.</param>
-        public LiftDiameterValidator(Parameter liftDiameter, Parameter liftHeight, Parameter centralHoleDiameter)
+        /// <param name="nominalDiameter">Номинальный диаметр резьбы.</param>
+        public LiftDiameterValidator(Parameter liftDiameter, Parameter liftHeight, Parameter centralHoleDiameter, Parameter nominalDiameter)
         {
             _liftDiameter = liftDiameter ?? throw new ArgumentNullException(nameof(liftDiameter));
             _liftHeight = liftHeight ?? throw new ArgumentNullException(nameof(liftHeight));
             _centralHoleDiameter = centralHoleDiameter ?? throw new ArgumentNullException(nameof(centralHoleDiameter));
+            _nominalDiameter = nominalDiameter ?? throw new ArgumentNullException(nameof(nominalDiameter));
         }
 
         /// <summary>
@@ -50,6 +57,13 @@ namespace Flange.Validators.Parameters
 
             if (liftHeight > 0 && Math.Abs(liftDiameter) < double.Epsilon)
                 return "Диаметр подъема должен быть задан, если задана высота подъема.";
+
+            var nominalDiameter = _nominalDiameter.Value;
+
+            if (nominalDiameter > 0)
+                return liftDiameter <= nominalDiameter
+                    ? $"Диаметр подъема должен быть больше номинального диаметра резьбы ({nominalDiameter})."
+                    : null;
 
             var centralHoleDiameter = _centralHoleDiameter.Value;
 

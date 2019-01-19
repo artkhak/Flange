@@ -32,6 +32,7 @@ namespace Flange.UI.Commands
             SetDisplayedValueOfFlangeParameterVMByName(flangeParametersVM, FlangeParameterNames.LiftDiameter, 20);
             SetDisplayedValueOfFlangeParameterVMByName(flangeParametersVM, FlangeParameterNames.LiftHeight, 1);
             SetDisplayedValueOfFlangeParameterVMByName(flangeParametersVM, FlangeParameterNames.NumberOfBore, 8);
+            SetDisplayedValueOfFlangeParameterVMByName(flangeParametersVM, FlangeParameterNames.NominalDiametr, 14);
         }
 
         /// <summary>

@@ -44,5 +44,10 @@
         /// Количество отверстий.
         /// </summary>
         public const string NumberOfBore = "Количество отверстий";
+
+        /// <summary>
+        /// Номинальный диаметр внутреней резьбы.
+        /// </summary>
+        public const string NominalDiametr = "Номинальный диаметр внутреней резьбы";
     }
 }

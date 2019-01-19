@@ -33,6 +33,7 @@ namespace Flange
             var liftHeight = new Parameter(FlangeParameterNames.LiftHeight, new NotNegativeDoubleValidator());
             var numberOfBore = new Parameter(FlangeParameterNames.NumberOfBore, new PositiveDoubleValidator(),
                 new List<double> {5, 6, 8, 10});
+            var nominalDiametr = new Parameter(FlangeParameterNames.NominalDiametr, new NotNegativeDoubleValidator());
 
             Parameters = new List<Parameter>
             {
@@ -43,14 +44,15 @@ namespace Flange
                 diameterForCenters,
                 liftDiameter,
                 liftHeight,
-                numberOfBore
+                numberOfBore,
+                nominalDiametr
             };
 
             _validators = new List<IValidator<object>>
             {
                 new BaseDiameterValidator(baseDiameter, diameterForCenters, boreDiameter),
                 new DiameterForCentersValidator(diameterForCenters, liftDiameter, centralHoleDiameter, boreDiameter),
-                new LiftDiameterValidator(liftDiameter, liftHeight, centralHoleDiameter),
+                new LiftDiameterValidator(liftDiameter, liftHeight, centralHoleDiameter, nominalDiametr),
                 new LiftHeightValidator(liftHeight, liftDiameter, centralHoleDiameter)
             };
         }
