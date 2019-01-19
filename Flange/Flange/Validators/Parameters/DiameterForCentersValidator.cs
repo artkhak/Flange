@@ -1,10 +1,22 @@
-﻿namespace Flange.Validators.Parameters
+﻿using System;
+
+namespace Flange.Validators.Parameters
 {
     /// <summary>
     /// Валидатор диаметра, на котором будут располагаться центры отверстий.
     /// </summary>
     public class DiameterForCentersValidator : IValidator<object>
     {
+        /// <summary>
+        /// Диаметр отверстий.
+        /// </summary>
+        private readonly Parameter _boreDiameter;
+
+        /// <summary>
+        /// Диаметр центрального отверстия.
+        /// </summary>
+        private readonly Parameter _centralHoleDiameter;
+
         /// <summary>
         /// Диаметр, на котором будут располагаться центры отверстий.
         /// </summary>
@@ -16,28 +28,19 @@
         private readonly Parameter _liftDiameter;
 
         /// <summary>
-        /// Диаметр центрального отверстия.
-        /// </summary>
-        private readonly Parameter _centralHoleDiameter;
-
-        /// <summary>
-        /// Диаметр отверстий.
-        /// </summary>
-        private readonly Parameter _boreDiameter;
-
-        /// <summary>
         /// Конструктор.
         /// </summary>
         /// <param name="diameterForCenters">Диаметр, на котором будут располагаться центры отверстий.</param>
         /// <param name="liftDiameter">Диаметр подъема.</param>
         /// <param name="centralHoleDiameter">Диаметр центрального отверстия.</param>
         /// <param name="boreDiameter">Диаметр отверстий.</param>
-        public DiameterForCentersValidator(Parameter diameterForCenters, Parameter liftDiameter, Parameter centralHoleDiameter, Parameter boreDiameter)
+        public DiameterForCentersValidator(Parameter diameterForCenters, Parameter liftDiameter,
+            Parameter centralHoleDiameter, Parameter boreDiameter)
         {
-            _diameterForCenters = diameterForCenters;
-            _liftDiameter = liftDiameter;
-            _centralHoleDiameter = centralHoleDiameter;
-            _boreDiameter = boreDiameter;
+            _diameterForCenters = diameterForCenters ?? throw new ArgumentNullException(nameof(diameterForCenters));
+            _liftDiameter = liftDiameter ?? throw new ArgumentNullException(nameof(liftDiameter));
+            _centralHoleDiameter = centralHoleDiameter ?? throw new ArgumentNullException(nameof(centralHoleDiameter));
+            _boreDiameter = boreDiameter ?? throw new ArgumentNullException(nameof(boreDiameter));
         }
 
         /// <summary>

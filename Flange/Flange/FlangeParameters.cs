@@ -5,7 +5,7 @@ using Flange.Validators;
 using Flange.Validators.Parameters;
 using Flange.Validators.Values;
 
-namespace Flange.FlangeBuild
+namespace Flange
 {
     /// <summary>
     /// Параметры фланца.

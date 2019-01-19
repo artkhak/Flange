@@ -1,5 +1,4 @@
-﻿using Flange.FlangeBuild;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Flange.Tests
 {

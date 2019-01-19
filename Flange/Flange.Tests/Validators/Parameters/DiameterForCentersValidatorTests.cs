@@ -1,4 +1,5 @@
-﻿using Flange.Validators.Parameters;
+﻿using System;
+using Flange.Validators.Parameters;
 using NUnit.Framework;
 
 namespace Flange.Tests.Validators.Parameters
@@ -7,33 +8,41 @@ namespace Flange.Tests.Validators.Parameters
     public class DiameterForCentersValidatorTests
     {
         [Test]
-        public void Validate()
+        [TestCase(0, 0, 0, 0, ExpectedResult = false)]
+        [TestCase(3, 1, 1, 1, ExpectedResult = true)]
+        [TestCase(3, 2, 1, 1, ExpectedResult = false)]
+        [TestCase(3, 0, 2, 1, ExpectedResult = false)]
+        public bool Validate(double diameterForCentersValue, double liftDiameterValue, double centralHoleDiameterValue,
+            double boreDiameterValue)
         {
-            var diameterForCenters = new Parameter("");
-            var liftDiameter = new Parameter("");
-            var centralHoleDiameter = new Parameter("");
-            var boreDiameter = new Parameter("");
+            var diameterForCenters = new Parameter("") {Value = diameterForCentersValue};
+            var liftDiameter = new Parameter("") {Value = liftDiameterValue};
+            var centralHoleDiameter = new Parameter("") {Value = centralHoleDiameterValue};
+            var boreDiameter = new Parameter("") {Value = boreDiameterValue};
 
-            var validator = new DiameterForCentersValidator(diameterForCenters, liftDiameter, centralHoleDiameter, boreDiameter);
+            var validator =
+                new DiameterForCentersValidator(diameterForCenters, liftDiameter, centralHoleDiameter, boreDiameter);
 
-            Assert.IsFalse(string.IsNullOrWhiteSpace(validator.Validate(null)));
+            return string.IsNullOrWhiteSpace(validator.Validate(null));
+        }
 
-            diameterForCenters.Value = 3;
-            liftDiameter.Value = 1;
-            centralHoleDiameter.Value = 1;
-            boreDiameter.Value = 1;
 
-            Assert.IsTrue(string.IsNullOrWhiteSpace(validator.Validate(null)));
+        [Test]
+        public void DiameterForCentersValidator_NullParameter()
+        {
+            var existedParameter = new Parameter("");
 
-            liftDiameter.Value = 2;
+            Assert.Throws<ArgumentNullException>(() =>
+                new DiameterForCentersValidator(null, existedParameter, existedParameter, existedParameter));
 
-            Assert.IsFalse(string.IsNullOrWhiteSpace(validator.Validate(null)));
+            Assert.Throws<ArgumentNullException>(() =>
+                new DiameterForCentersValidator(existedParameter, null, existedParameter, existedParameter));
 
-            liftDiameter.Value = 0;
-            centralHoleDiameter.Value = 2;
+            Assert.Throws<ArgumentNullException>(() =>
+                new DiameterForCentersValidator(existedParameter, existedParameter, null, existedParameter));
 
-            Assert.IsFalse(string.IsNullOrWhiteSpace(validator.Validate(null)));
-
+            Assert.Throws<ArgumentNullException>(() =>
+                new DiameterForCentersValidator(existedParameter, existedParameter, existedParameter, null));
         }
     }
 }

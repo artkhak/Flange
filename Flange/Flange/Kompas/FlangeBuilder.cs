@@ -1,5 +1,4 @@
 ﻿using System;
-using Flange.FlangeBuild;
 using Kompas6API5;
 using Kompas6Constants3D;
 
@@ -13,7 +12,7 @@ namespace Flange.Kompas
         /// <summary>
         /// Компас.
         /// </summary>
-        private readonly Kompas _kompas;
+        private readonly KompasApp _kompas;
 
         /// <summary>
         /// Деталь.
@@ -24,9 +23,9 @@ namespace Flange.Kompas
         /// Конструктор.
         /// </summary>
         /// <param name="kompas">Компас.</param>
-        public FlangeBuilder(Kompas kompas)
+        public FlangeBuilder(KompasApp kompas)
         {
-            _kompas = kompas;
+            _kompas = kompas ?? throw new ArgumentNullException(nameof(kompas));
         }
 
         /// <summary>

@@ -30,9 +30,9 @@ namespace Flange.Validators.Parameters
         /// <param name="centralHoleDiameter">Диаметр центрального отверстия.</param>
         public LiftDiameterValidator(Parameter liftDiameter, Parameter liftHeight, Parameter centralHoleDiameter)
         {
-            _liftDiameter = liftDiameter;
-            _liftHeight = liftHeight;
-            _centralHoleDiameter = centralHoleDiameter;
+            _liftDiameter = liftDiameter ?? throw new ArgumentNullException(nameof(liftDiameter));
+            _liftHeight = liftHeight ?? throw new ArgumentNullException(nameof(liftHeight));
+            _centralHoleDiameter = centralHoleDiameter ?? throw new ArgumentNullException(nameof(centralHoleDiameter));
         }
 
         /// <summary>

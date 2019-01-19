@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Text;
-using Flange.FlangeBuild;
 using Flange.Kompas;
 using Flange.UI.Commands.BaseCommands;
 
@@ -37,7 +36,7 @@ namespace Flange.UI.Commands
             if (CheckErrors(flangeParameters))
                 return;
 
-            var kompas = KompasAppManager.GetActive() ?? KompasAppManager.Start();
+            var kompas = KompasApp.GetActive() ?? KompasApp.Start();
             var builder = new FlangeBuilder(kompas);
             builder.Build(flangeParameters);
         }

@@ -7,15 +7,16 @@ namespace Flange.Tests.Validators.Values
     public class PositiveDoubleVolidatorTests
     {
         [Test]
-        public void Validate()
+        [TestCase(3, ExpectedResult = true)]
+        [TestCase(1, ExpectedResult = true)]
+        [TestCase(0, ExpectedResult = false)]
+        [TestCase(-1, ExpectedResult = false)]
+        [TestCase(-3, ExpectedResult = false)]
+        public bool Validate(double value)
         {
             var validator = new PositiveDoubleValidator();
 
-            Assert.IsTrue(string.IsNullOrWhiteSpace(validator.Validate(3)));
-            Assert.IsTrue(string.IsNullOrWhiteSpace(validator.Validate(1)));
-            Assert.IsFalse(string.IsNullOrWhiteSpace(validator.Validate(0)));
-            Assert.IsFalse(string.IsNullOrWhiteSpace(validator.Validate(-1)));
-            Assert.IsFalse(string.IsNullOrWhiteSpace(validator.Validate(-3)));
+            return string.IsNullOrWhiteSpace(validator.Validate(value)); ;
         }
     }
 }

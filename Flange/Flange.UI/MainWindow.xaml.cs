@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Flange.FlangeBuild;
 using Flange.UI.ViewModels;
 
 namespace Flange.UI

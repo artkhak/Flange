@@ -1,4 +1,6 @@
-﻿namespace Flange.Validators.Parameters
+﻿using System;
+
+namespace Flange.Validators.Parameters
 {
     /// <summary>
     /// Валидатор диаметра основания.
@@ -28,9 +30,9 @@
         /// <param name="boreDiameter">Диаметр отверстий.</param>
         public BaseDiameterValidator(Parameter baseDiameter, Parameter diameterForCenters, Parameter boreDiameter)
         {
-            _baseDiameter = baseDiameter;
-            _diameterForCenters = diameterForCenters;
-            _boreDiameter = boreDiameter;
+            _baseDiameter = baseDiameter ?? throw new ArgumentNullException(nameof(baseDiameter));
+            _diameterForCenters = diameterForCenters ?? throw new ArgumentNullException(nameof(diameterForCenters));
+            _boreDiameter = boreDiameter ?? throw new ArgumentNullException(nameof(boreDiameter));
         }
 
         /// <summary>

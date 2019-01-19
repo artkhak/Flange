@@ -20,7 +20,7 @@ namespace Flange.UI.Commands
         /// </summary>
         protected override void Execute()
         {
-            KompasAppManager.Start();
+            KompasApp.Start();
         }
     }
 }
