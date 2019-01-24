@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-
-namespace Flange.UI.ViewModels
+﻿namespace Flange.UI.ViewModels
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+
     /// <summary>
     /// Вью-модель параметра.
     /// </summary>
@@ -79,8 +79,8 @@ namespace Flange.UI.ViewModels
         /// <returns>Список ошибок.</returns>
         public override IEnumerable GetErrors(string propertyName)
         {
-            return propertyName == nameof(DisplayedValue) 
-                ? new List<string>{_parameter.Error }
+            return propertyName == nameof(DisplayedValue)
+                ? new List<string> {_parameter.Error}
                 : new List<string>();
         }
     }

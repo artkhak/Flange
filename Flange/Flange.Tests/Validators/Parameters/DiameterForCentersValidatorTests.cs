@@ -1,12 +1,32 @@
-﻿using System;
-using Flange.Validators.Parameters;
-using NUnit.Framework;
-
-namespace Flange.Tests.Validators.Parameters
+﻿namespace Flange.Tests.Validators.Parameters
 {
+    using System;
+
+    using Flange.Validators.Parameters;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class DiameterForCentersValidatorTests
     {
+        [Test]
+        public void DiameterForCentersValidator_NullParameter()
+        {
+            var existedParameter = new Parameter("");
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new DiameterForCentersValidator(null, existedParameter, existedParameter, existedParameter));
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new DiameterForCentersValidator(existedParameter, null, existedParameter, existedParameter));
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new DiameterForCentersValidator(existedParameter, existedParameter, null, existedParameter));
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new DiameterForCentersValidator(existedParameter, existedParameter, existedParameter, null));
+        }
+
         [Test]
         [TestCase(0, 0, 0, 0, ExpectedResult = false)]
         [TestCase(3, 1, 1, 1, ExpectedResult = true)]
@@ -24,25 +44,6 @@ namespace Flange.Tests.Validators.Parameters
                 new DiameterForCentersValidator(diameterForCenters, liftDiameter, centralHoleDiameter, boreDiameter);
 
             return string.IsNullOrWhiteSpace(validator.Validate(null));
-        }
-
-
-        [Test]
-        public void DiameterForCentersValidator_NullParameter()
-        {
-            var existedParameter = new Parameter("");
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new DiameterForCentersValidator(null, existedParameter, existedParameter, existedParameter));
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new DiameterForCentersValidator(existedParameter, null, existedParameter, existedParameter));
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new DiameterForCentersValidator(existedParameter, existedParameter, null, existedParameter));
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new DiameterForCentersValidator(existedParameter, existedParameter, existedParameter, null));
         }
     }
 }

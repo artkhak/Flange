@@ -1,8 +1,9 @@
-﻿using Flange.Validators.Values;
-using NUnit.Framework;
-
-namespace Flange.Tests.Validators.Values
+﻿namespace Flange.Tests.Validators.Values
 {
+    using Flange.Validators.Values;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class NotNegativeDoubleValidatorTests
     {

@@ -1,4 +1,6 @@
-﻿using Flange.UI.Commands;
+﻿using System.Windows.Input;
+
+using Flange.UI.Commands;
 
 namespace Flange.UI.ViewModels
 {
@@ -35,21 +37,21 @@ namespace Flange.UI.ViewModels
         /// <summary>
         /// Команда запуска КОМПАС-3D.
         /// </summary>
-        public StartKompasCommand StartKompasCommand { get; }
+        public ICommand StartKompasCommand { get; }
 
         /// <summary>
         /// Команда построения фланца.
         /// </summary>
-        public BuildFlangeCommand BuildFlangeCommand { get; }
+        public ICommand BuildFlangeCommand { get; }
 
         /// <summary>
         /// Комманда очистки значений параметров фланца.
         /// </summary>
-        public ClearFlangeParameterValuesCommand ClearFlangeParameterValuesCommand { get; }
+        public ICommand ClearFlangeParameterValuesCommand { get; }
 
         /// <summary>
         /// Команда заполнения значениями по умолчанию.
         /// </summary>
-        public SetDefaultValuesCommand SetDefaultValuesCommand { get; set; }
+        public ICommand SetDefaultValuesCommand { get; set; }
     }
 }

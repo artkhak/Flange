@@ -1,12 +1,29 @@
-﻿using System;
-using Flange.Validators.Parameters;
-using NUnit.Framework;
-
-namespace Flange.Tests.Validators.Parameters
+﻿namespace Flange.Tests.Validators.Parameters
 {
+    using System;
+
+    using Flange.Validators.Parameters;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class LiftHeightValidatorTests
     {
+        [Test]
+        public void LiftHeightValidator_NullParameter()
+        {
+            var existedParameter = new Parameter("");
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new LiftHeightValidator(null, existedParameter, existedParameter));
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new LiftHeightValidator(existedParameter, null, existedParameter));
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new LiftHeightValidator(existedParameter, existedParameter, null));
+        }
+
         [Test]
         [TestCase(0, 0, 0, ExpectedResult = true)]
         [TestCase(0, 0, 1, ExpectedResult = true)]
@@ -22,21 +39,6 @@ namespace Flange.Tests.Validators.Parameters
             var validator = new LiftHeightValidator(liftHeight, liftDiameter, centralHoleDiameter);
 
             return string.IsNullOrWhiteSpace(validator.Validate(null));
-        }
-
-        [Test]
-        public void LiftHeightValidator_NullParameter()
-        {
-            var existedParameter = new Parameter("");
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new LiftHeightValidator(null, existedParameter, existedParameter));
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new LiftHeightValidator(existedParameter, null, existedParameter));
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new LiftHeightValidator(existedParameter, existedParameter, null));
         }
     }
 }

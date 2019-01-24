@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Flange.Validators.Values;
-using NUnit.Framework;
-
-namespace Flange.Tests
+﻿namespace Flange.Tests
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Flange.Validators.Values;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class ParameterTests
     {

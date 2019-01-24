@@ -1,12 +1,29 @@
-﻿using System;
-using Flange.Validators.Parameters;
-using NUnit.Framework;
-
-namespace Flange.Tests.Validators.Parameters
+﻿namespace Flange.Tests.Validators.Parameters
 {
+    using System;
+
+    using Flange.Validators.Parameters;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class BaseDiameterValidatorTests
     {
+        [Test]
+        public void BaseDiameterValidator_NullParameter()
+        {
+            var existedParameter = new Parameter("");
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new BaseDiameterValidator(null, existedParameter, existedParameter));
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new BaseDiameterValidator(existedParameter, null, existedParameter));
+
+            Assert.Throws<ArgumentNullException>(() =>
+                new BaseDiameterValidator(existedParameter, existedParameter, null));
+        }
+
         [Test]
         [TestCase(0, 0, 0, ExpectedResult = false)]
         [TestCase(3, 1, 1, ExpectedResult = true)]
@@ -21,21 +38,6 @@ namespace Flange.Tests.Validators.Parameters
             var validator = new BaseDiameterValidator(baseDiameter, diameterForCenters, boreDiameter);
 
             return string.IsNullOrWhiteSpace(validator.Validate(null));
-        }
-
-        [Test]
-        public void BaseDiameterValidator_NullParameter()
-        {
-            var existedParameter = new Parameter("");
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new BaseDiameterValidator(null, existedParameter, existedParameter));
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new BaseDiameterValidator(existedParameter, null, existedParameter));
-
-            Assert.Throws<ArgumentNullException>(() =>
-                new BaseDiameterValidator(existedParameter, existedParameter, null));
         }
     }
 }

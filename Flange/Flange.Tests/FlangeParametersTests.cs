@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-
-namespace Flange.Tests
+﻿namespace Flange.Tests
 {
+    using NUnit.Framework;
+
     [TestFixture]
     public class FlangeParametersTests
     {

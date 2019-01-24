@@ -1,12 +1,25 @@
-﻿using System;
-using Flange.Kompas;
-using NUnit.Framework;
-
-namespace Flange.Tests.Kompas
+﻿namespace Flange.Tests.Kompas
 {
+    using System;
+
+    using Flange.Kompas;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class KompasAppTests
     {
+        [Test]
+        public void CreateDocument3D()
+        {
+            var kompas = KompasApp.Start();
+            var document3D = kompas.CreateDocument3D();
+
+            Assert.NotNull(document3D);
+
+            kompas.Quit();
+        }
+
         [Test]
         public void GetActive()
         {
@@ -30,6 +43,15 @@ namespace Flange.Tests.Kompas
 
         [Test]
         //[Ignore("Если не установлена совместимая версия КОМПАС-3D")]
+        public void Quit()
+        {
+            var kompas = KompasApp.Start();
+
+            Assert.DoesNotThrow(() => kompas.Quit());
+        }
+
+        [Test]
+        //[Ignore("Если не установлена совместимая версия КОМПАС-3D")]
         public void Start()
         {
             var kompas = KompasApp.Start();
@@ -40,30 +62,10 @@ namespace Flange.Tests.Kompas
         }
 
         [Test]
-        //[Ignore("Если не установлена совместимая версия КОМПАС-3D")]
-        public void Quit()
-        {
-            var kompas = KompasApp.Start();
-            
-            Assert.DoesNotThrow(() => kompas.Quit());
-        }
-
-        [Test]
         [Ignore("Если установлена совместимая версия КОМПАС-3D")]
         public void Start_NotInstalled()
         {
             Assert.Throws<Exception>(() => KompasApp.Start());
-        }
-
-        [Test]
-        public void CreateDocument3D()
-        {
-            var kompas = KompasApp.Start();
-            var document3D = kompas.CreateDocument3D();
-
-            Assert.NotNull(document3D);
-
-            kompas.Quit();
         }
     }
 }

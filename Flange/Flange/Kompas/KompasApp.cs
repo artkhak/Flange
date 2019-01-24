@@ -1,9 +1,10 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using Kompas6API5;
-
-namespace Flange.Kompas
+﻿namespace Flange.Kompas
 {
+    using System;
+    using System.Runtime.InteropServices;
+
+    using Kompas6API5;
+
     /// <summary>
     /// Оболочка для КОМПАС-3D.
     /// </summary>

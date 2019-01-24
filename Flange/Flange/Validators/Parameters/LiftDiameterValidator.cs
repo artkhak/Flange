@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Flange.Validators.Parameters
+﻿namespace Flange.Validators.Parameters
 {
+    using System;
+
     /// <summary>
     /// Валидатор диаметра подъема.
     /// </summary>
@@ -34,7 +34,8 @@ namespace Flange.Validators.Parameters
         /// <param name="liftHeight">Высота подъема.</param>
         /// <param name="centralHoleDiameter">Диаметр центрального отверстия.</param>
         /// <param name="nominalDiameter">Номинальный диаметр резьбы.</param>
-        public LiftDiameterValidator(Parameter liftDiameter, Parameter liftHeight, Parameter centralHoleDiameter, Parameter nominalDiameter)
+        public LiftDiameterValidator(Parameter liftDiameter, Parameter liftHeight, Parameter centralHoleDiameter,
+            Parameter nominalDiameter)
         {
             _liftDiameter = liftDiameter ?? throw new ArgumentNullException(nameof(liftDiameter));
             _liftHeight = liftHeight ?? throw new ArgumentNullException(nameof(liftHeight));
@@ -59,16 +60,19 @@ namespace Flange.Validators.Parameters
                 return "Диаметр подъема должен быть задан, если задана высота подъема.";
 
             var nominalDiameter = _nominalDiameter.Value;
-
-            if (nominalDiameter > 0)
-                return liftDiameter <= nominalDiameter
-                    ? $"Диаметр подъема должен быть больше номинального диаметра резьбы ({nominalDiameter})."
-                    : null;
-
             var centralHoleDiameter = _centralHoleDiameter.Value;
 
-            return liftDiameter <= centralHoleDiameter
-                ? $"Диаметр подъема должен быть больше диаметра центрального отверстия ({centralHoleDiameter})."
+            var minLiftDiameter = nominalDiameter > 0
+                ? nominalDiameter + 2 * liftHeight
+                : centralHoleDiameter;
+
+            var errorMessage = "Диаметр подъема должен быть больше ";
+            errorMessage += nominalDiameter > 0
+                ? $"суммы номинального диаметра резьбы и удвоенной высоты подъема ({nominalDiameter})."
+                : $"диаметра центрального отверстия ({centralHoleDiameter}).";
+
+            return liftDiameter <= minLiftDiameter
+                ? errorMessage
                 : null;
         }
     }

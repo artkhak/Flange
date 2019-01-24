@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Flange.Validators.Parameters
+﻿namespace Flange.Validators.Parameters
 {
+    using System;
+
     /// <summary>
     /// Валидатор диаметра, на котором будут располагаться центры отверстий.
     /// </summary>

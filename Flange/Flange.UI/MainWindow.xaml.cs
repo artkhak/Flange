@@ -1,8 +1,9 @@
-﻿using System.Windows;
-using Flange.UI.ViewModels;
-
-namespace Flange.UI
+﻿namespace Flange.UI
 {
+    using System.Windows;
+
+    using Flange.UI.ViewModels;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

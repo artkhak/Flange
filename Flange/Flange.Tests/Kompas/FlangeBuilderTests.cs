@@ -1,9 +1,11 @@
-﻿using System;
-using Flange.Kompas;
-using NUnit.Framework;
-
-namespace Flange.Tests.Kompas
+﻿namespace Flange.Tests.Kompas
 {
+    using System;
+
+    using Flange.Kompas;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class FlangeBuilderTests
     {

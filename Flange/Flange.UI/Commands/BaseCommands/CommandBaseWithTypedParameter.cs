@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Flange.UI.Commands.BaseCommands
+﻿namespace Flange.UI.Commands.BaseCommands
 {
+    using System;
+
     /// <summary>
     /// База команды с типизированным параметром.
     /// </summary>

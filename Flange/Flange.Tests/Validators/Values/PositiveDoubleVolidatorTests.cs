@@ -1,8 +1,9 @@
-﻿using Flange.Validators.Values;
-using NUnit.Framework;
-
-namespace Flange.Tests.Validators.Values
+﻿namespace Flange.Tests.Validators.Values
 {
+    using Flange.Validators.Values;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class PositiveDoubleVolidatorTests
     {
@@ -16,7 +17,8 @@ namespace Flange.Tests.Validators.Values
         {
             var validator = new PositiveDoubleValidator();
 
-            return string.IsNullOrWhiteSpace(validator.Validate(value)); ;
+            return string.IsNullOrWhiteSpace(validator.Validate(value));
+            ;
         }
     }
 }

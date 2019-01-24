@@ -34,7 +34,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlangeParameterNames.cs" />
@@ -46,6 +45,7 @@
     <Compile Include="Validators\Parameters\BaseDiameterValidator.cs" />
     <Compile Include="Validators\Parameters\DiameterForCentersValidator.cs" />
     <Compile Include="Validators\IValidator.cs" />
+    <Compile Include="Validators\Parameters\NominalDiameterValidator.cs" />
     <Compile Include="Validators\Values\NotNegativeDoubleValidator.cs" />
     <Compile Include="Validators\Parameters\LiftHeightValidator.cs" />
     <Compile Include="Validators\Parameters\LiftDiameterValidator.cs" />
@@ -63,15 +63,6 @@
     </COMReference>
     <COMReference Include="Kompas6Constants3D">
       <Guid>{2CAF168C-7961-4B90-9DA2-701419BEEFE3}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="KompasAPI7">
-      <Guid>{69AC2981-37C0-4379-84FD-5DD2F3C0A520}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>

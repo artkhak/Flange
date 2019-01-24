@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Flange.Validators.Parameters
+﻿namespace Flange.Validators.Parameters
 {
+    using System;
+
     /// <summary>
     /// Валидатор высоты подъема.
     /// </summary>

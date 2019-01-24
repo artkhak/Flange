@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Flange.UI.ViewModels
+﻿namespace Flange.UI.ViewModels
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
     /// Вью-модель для параметров фланца.
     /// </summary>

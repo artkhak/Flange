@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Flange.Validators;
-
-namespace Flange
+﻿namespace Flange
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Flange.Validators;
+
     /// <summary>
     /// Параметер.
     /// </summary>

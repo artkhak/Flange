@@ -1,5 +1,7 @@
 ﻿using System;
+
 using Kompas6API5;
+
 using Kompas6Constants3D;
 
 namespace Flange.Kompas
@@ -56,7 +58,8 @@ namespace Flange.Kompas
 
             BuildCentralHole(centralHoleDiameter, flangeHeight);
 
-            BuildThread(nominalDiameter, flangeHeight, centralHoleDiameter);
+            if (Math.Abs(nominalDiameter) > double.Epsilon)
+                BuildThread(centralHoleDiameter, nominalDiameter, flangeHeight);
         }
 
         /// <summary>
@@ -122,6 +125,19 @@ namespace Flange.Kompas
             double yCenter = 0)
         {
             document2D.ksCircle(xCenter, yCenter, diameter / 2, 1);
+        }
+
+        /// <summary>
+        /// Рисует эскиз отрезка.
+        /// </summary>
+        /// <param name="document2D">2D документ.</param>
+        /// <param name="x1">Начальная координата x.</param>
+        /// <param name="y1">Начальная координата y.</param>
+        /// <param name="x2">Конечная координата x.</param>
+        /// <param name="y2">Конечная координата y.</param>
+        private static void PrintLineSeg(ksDocument2D document2D, double x1, double y1, double x2, double y2)
+        {
+            document2D.ksLineSeg(x1, y1, x2, y2, 1);
         }
 
         /// <summary>
@@ -202,19 +218,11 @@ namespace Flange.Kompas
         /// <summary>
         /// Операция "Резьба"
         /// </summary>
-        /// <param name="diametrNom">Номинальный диаметр резьбы</param>
+        /// <param name="diameterIn">Внутренний диаметр резьбы</param>
+        /// <param name="diameterNom">Номинальный диаметр резьбы</param>
         /// <param name="height">Высота гайки</param>
-        /// <param name="diametrIn">Внутренний диаметр резьбы</param>
-        private void BuildThread(double diametrNom, double height, double diametrIn)
+        private void BuildThread(double diameterIn, double diameterNom, double height)
         {
-            //Коэффициент для расчета угла в 15°
-            var index = diametrNom / 10 / 1.6667;
-
-            //Расстояние для резьбы
-            var threadLength = diametrNom - diametrIn;
-
-            var xStart = 51 * diametrNom / 100;
-
             const double offset = 1;
 
             var planeXoy = GetPlaneXoy();
@@ -228,35 +236,15 @@ namespace Flange.Kompas
             cylindricSpiralDefinition.buildDir = true;
             cylindricSpiralDefinition.buildMode = 1;
             cylindricSpiralDefinition.height = offset * 2 + height;
-            cylindricSpiralDefinition.diam = diametrNom;
+            cylindricSpiralDefinition.diam = diameterNom;
             cylindricSpiralDefinition.firstAngle = 0;
             cylindricSpiralDefinition.turnDir = true;
             cylindricSpiralDefinition.step = 2;
 
             cylindricSpiral.Create();
 
-            var sketch = _part.NewEntity(O3DSketch);
+            var sketch = PrintSketchForCutEvolution(diameterIn, diameterNom, offset);
             ksSketchDefinition sketchDefinition = sketch.GetDefinition();
-
-            ksEntity planeXoz = _part.GetDefaultEntity(O3DPlaneXoz);
-            sketchDefinition.SetPlane(planeXoz);
-
-            sketch.Create();
-
-            Document2D document2D = sketchDefinition.BeginEdit();
-
-            document2D.ksLineSeg(xStart, offset, xStart, offset + index / 2, 1);
-            document2D.ksLineSeg(xStart, offset, xStart, offset - index / 2, 1);
-            document2D.ksLineSeg(xStart - threadLength, offset, xStart - threadLength,
-                offset + index * 1.89318 / 2, 1);
-            document2D.ksLineSeg(xStart - threadLength, offset, xStart - threadLength,
-                offset - index * 1.89318 / 2, 1);
-            document2D.ksLineSeg(xStart, offset + index / 2, xStart - threadLength,
-                offset + index * 1.89318 / 2, 1);
-            document2D.ksLineSeg(xStart, offset - index / 2, xStart - threadLength,
-                offset - index * 1.89318 / 2, 1);
-
-            sketchDefinition.EndEdit();
 
             ksEntity entityCutEvolution = _part.NewEntity(O3DCutEvolution);
             ksCutEvolutionDefinition cutEvolutionDefinition = entityCutEvolution.GetDefinition();
@@ -268,6 +256,53 @@ namespace Flange.Kompas
             pathParts.Clear();
             pathParts.Add(cylindricSpiral);
             entityCutEvolution.Create();
+        }
+
+        /// <summary>
+        /// Рисует эскиз для кинематического вырезания резьбы.
+        /// </summary>
+        /// <param name="diameterIn">Внутренний диаметр резьбы.</param>
+        /// <param name="diameterNom">Номинальный диаметр резьбы.</param>
+        /// <param name="offset">Сдвиг.</param>
+        /// <returns>Эскиз.</returns>
+        private ksEntity PrintSketchForCutEvolution(double diameterIn, double diameterNom, double offset)
+        {
+            var sketch = _part.NewEntity(O3DSketch);
+            ksSketchDefinition sketchDefinition = sketch.GetDefinition();
+
+            ksEntity planeXoz = _part.GetDefaultEntity(O3DPlaneXoz);
+            sketchDefinition.SetPlane(planeXoz);
+
+            sketch.Create();
+
+            Document2D document2D = sketchDefinition.BeginEdit();
+
+            var xStart = 0.51 * diameterNom;
+
+            var index1 = 0.03 * diameterNom;
+
+            var index2 = 1.89318 * index1;
+
+            var threadDeapth = diameterNom - diameterIn;
+
+            var sumOffsetAndIndex1 = offset + index1;
+            var diffOffsetAndIndex1 = offset - index1;
+
+            var sumOffsetAndIndex2 = offset + index2;
+            var diffOffsetAndIndex2 = offset - index2;
+
+            var xInThreadDeep = xStart - threadDeapth;
+
+            PrintLineSeg(document2D, xStart, offset, xStart, sumOffsetAndIndex1);
+            PrintLineSeg(document2D, xStart, offset, xStart, diffOffsetAndIndex1);
+            PrintLineSeg(document2D, xInThreadDeep, offset, xInThreadDeep, sumOffsetAndIndex2);
+            PrintLineSeg(document2D, xInThreadDeep, offset, xInThreadDeep, diffOffsetAndIndex2);
+            PrintLineSeg(document2D, xStart, sumOffsetAndIndex1, xInThreadDeep, sumOffsetAndIndex2);
+            PrintLineSeg(document2D, xStart, diffOffsetAndIndex1, xInThreadDeep, diffOffsetAndIndex2);
+
+            sketchDefinition.EndEdit();
+
+            return sketch;
         }
 
         /// <summary>
@@ -344,12 +379,12 @@ namespace Flange.Kompas
         private const short PTopPart = (short) Part_Type.pTop_Part;
 
         /// <summary>
-        /// Плоскость XY.
+        /// Плоскость XOY.
         /// </summary>
         private const short O3DPlaneXoy = (short) Obj3dType.o3d_planeXOY;
 
         /// <summary>
-        /// Плоскость XZ.
+        /// Плоскость XOZ.
         /// </summary>
         private const short O3DPlaneXoz = (short) Obj3dType.o3d_planeXOZ;
 

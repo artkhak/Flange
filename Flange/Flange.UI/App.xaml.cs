@@ -1,7 +1,7 @@
-﻿using System.Windows;
-
-namespace Flange.UI
+﻿namespace Flange.UI
 {
+    using System.Windows;
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

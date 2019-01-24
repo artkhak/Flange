@@ -1,10 +1,11 @@
-﻿using System.Globalization;
-using System.Linq;
-using Flange.UI.Commands.BaseCommands;
-using Flange.UI.ViewModels;
-
-namespace Flange.UI.Commands
+﻿namespace Flange.UI.Commands
 {
+    using System.Globalization;
+    using System.Linq;
+
+    using Flange.UI.Commands.BaseCommands;
+    using Flange.UI.ViewModels;
+
     /// <summary>
     /// Команда заполнения значениями по умолчанию.
     /// </summary>

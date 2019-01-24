@@ -1,8 +1,8 @@
-﻿using Flange.Kompas;
-using Flange.UI.Commands.BaseCommands;
-
-namespace Flange.UI.Commands
+﻿namespace Flange.UI.Commands
 {
+    using Flange.Kompas;
+    using Flange.UI.Commands.BaseCommands;
+
     /// <summary>
     /// Команда запуска КОМПАС-3D.
     /// </summary>

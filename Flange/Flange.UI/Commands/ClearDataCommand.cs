@@ -1,10 +1,11 @@
-﻿using System.Globalization;
-using System.Linq;
-using Flange.UI.Commands.BaseCommands;
-using Flange.UI.ViewModels;
-
-namespace Flange.UI.Commands
+﻿namespace Flange.UI.Commands
 {
+    using System.Globalization;
+    using System.Linq;
+
+    using Flange.UI.Commands.BaseCommands;
+    using Flange.UI.ViewModels;
+
     /// <summary>
     /// Комманда очистки значений параметров фланца.
     /// </summary>
@@ -20,15 +21,15 @@ namespace Flange.UI.Commands
         protected override bool CanExecute(FlangeParametersVM flangeParametersVM)
         {
             foreach (var parameter in flangeParametersVM.ParameterVMs)
-            {
                 if (parameter.PossibleValues == null)
                 {
                     if (!string.IsNullOrWhiteSpace(parameter.DisplayedValue))
                         return true;
                 }
                 else if (parameter.DisplayedValue != parameter.PossibleValues?.First())
+                {
                     return true;
-            }
+                }
 
             return false;
         }

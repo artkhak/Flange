@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Flange.UI.Properties;
-
-namespace Flange.UI.ViewModels
+﻿namespace Flange.UI.ViewModels
 {
+    using System;
+    using System.Collections;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+
+    using Flange.UI.Properties;
+
     /// <summary>
     /// Базовая вью-модель.
     /// </summary>
