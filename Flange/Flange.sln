@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flange.UI", "Flange.UI\Flange.UI.csproj", "{2FB36F96-997C-44A9-B249-82AB7811D24B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flange", "Flange\Flange.csproj", "{F3A9F602-BD7B-4321-9B26-D95FEC0F725B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flange.Tests", "Flange.Tests\Flange.Tests.csproj", "{2597E1C2-4190-43AB-8596-E8D805A8E321}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FB36F96-997C-44A9-B249-82AB7811D24B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB36F96-997C-44A9-B249-82AB7811D24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB36F96-997C-44A9-B249-82AB7811D24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB36F96-997C-44A9-B249-82AB7811D24B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3A9F602-BD7B-4321-9B26-D95FEC0F725B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A9F602-BD7B-4321-9B26-D95FEC0F725B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A9F602-BD7B-4321-9B26-D95FEC0F725B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A9F602-BD7B-4321-9B26-D95FEC0F725B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2597E1C2-4190-43AB-8596-E8D805A8E321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2597E1C2-4190-43AB-8596-E8D805A8E321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2597E1C2-4190-43AB-8596-E8D805A8E321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2597E1C2-4190-43AB-8596-E8D805A8E321}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D70FF5F-D243-414F-BA98-89BBD6AA1B95}
+	EndGlobalSection
+EndGlobal
